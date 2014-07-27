@@ -3,7 +3,9 @@
  *@author Daryl Johnston<daryl874@gmail.com
 */
 package com.app.escapistandroid;
-
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+ 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -15,14 +17,22 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 
 import com.app.escapistandroid.util.SystemUiHider;
 import com.app.escapistandroid.R;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +40,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -38,6 +49,11 @@ import android.widget.VideoView;
  * @see SystemUiHider
  */
 public class FullscreenActivity extends Activity {
+	
+	
+	public FullscreenActivity() {
+		super();
+		}
 	/**
 	 * Whether or not the system UI should be auto-hidden after
 	 * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -68,6 +84,19 @@ public class FullscreenActivity extends Activity {
 	 */
 	private SystemUiHider mSystemUiHider;
 	String sharedText;
+	// The following line should be changed to include the correct property id.
+	private static final String PROPERTY_ID = "UX-XXXXXXXX-X";
+	 
+	//Logging TAG
+	private static final String TAG = "MyApp";
+	 
+	public static int GENERAL_TRACKER = 0;
+	protected void onStop() {
+	    super.onStop();
+	}
+	
+
+	//on load code
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	
@@ -75,8 +104,7 @@ public class FullscreenActivity extends Activity {
 	    String action = intent.getAction();
 	    String type = intent.getType();
 		
-		
-		super.onCreate(savedInstanceState);
+	    super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_fullscreen);
 
@@ -128,7 +156,6 @@ public class FullscreenActivity extends Activity {
 			public void onClick(View view) {
 				if (TOGGLE_ON_CLICK) {
 					
-					
 					mSystemUiHider.toggle();
 				} else {
 					mSystemUiHider.show();
@@ -136,41 +163,38 @@ public class FullscreenActivity extends Activity {
 			}
 		});
 
-		// Upon interacting with UI controls, delay any scheduled hide()
-		// operations to prevent the jarring behavior of controls going away
-		// while interacting with the UI.
+		//set the orientation of the device to landscape
 		this.setRequestedOrientation(FullscreenActivity.SCREEN_ORIENTATION_LANDSCAPE);
 
 /*
 
 */
 
-
-	
+	//check if the application has been opened via a share 
 		if (Intent.ACTION_SEND.equals(action) && type != null) {
 	        if ("text/plain".equals(type)) {
+	        	//call the method to compile the shared URL and 
 	            handleSendText(intent); // Handle text being sent
 	        }else{
 	        	//Show help
-	               
+
 	               Intent launchactivity= new Intent(FullscreenActivity.this,popup.class);                               
 	     startActivity(launchactivity);    
+          }
+	         
+		}else{
+			
+			startActivity(new Intent(FullscreenActivity.this,ViewActivity.class));
+			System.out.println("No message here");
 
-   
-                        
-	                                         }
-	                                   
-	    
-	        
-	        
-		
-		
+			
 		}
 		
 		
 	}
 	
-	
+
+	  
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -193,6 +217,7 @@ public class FullscreenActivity extends Activity {
 		@Override
 		public void run() {
 			mSystemUiHider.hide();
+			
 		}
 	};
 
@@ -208,15 +233,30 @@ public class FullscreenActivity extends Activity {
 	public void playVideo(String URL){
 		
 		Uri uri = Uri.parse(URL); //Declare your url here.
-
+		final ProgressDialog progDailog;
 		VideoView mVideoView  = (VideoView)findViewById(R.id.videoView1);
 		mVideoView.setVisibility(1);
 		mVideoView.setMediaController(new MediaController(this));       
 		mVideoView.setVideoURI(uri);
 		mVideoView.requestFocus();
 		mVideoView.start();
+	      progDailog = ProgressDialog.show(this, "Please wait ...", "Retrieving data ...", true);
+
+	      mVideoView.setOnPreparedListener(new OnPreparedListener() {
+
+	    	  	
+	            public void onPrepared(MediaPlayer mp) {
+	                // TODO Auto-generated method stub
+	                progDailog.dismiss();
+	            }
+
+	
+	        });
+	    }
 		
-	}
+		
+		
+	
 	
 	//get the URL
 	void handleSendText(Intent intent) {
@@ -226,7 +266,7 @@ public class FullscreenActivity extends Activity {
 	    	try {
 				playVideo(getURL(sharedText));
 	    		
-	    		//System.out.println("HERE " + getURL("http://www.escapistmagazine.com/videos/view/zero-punctuation/8891-Thief-Stealing-a-Classic"));
+	    	
 			} catch (IllegalStateException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -438,23 +478,16 @@ return s;
 		        		 }
 		        		 }
 		        	 }
-		        		
 
 		        	}
 		        	
 		        	found++;
 		        }else {
-		        	
 		        	found = 0;
-		        	
 		        }
-		        
-		 
 		    }
 			
-	
-			
-			   
+
 			   return jsString;
 					  
 			   
