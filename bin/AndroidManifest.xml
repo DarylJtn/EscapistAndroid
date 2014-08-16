@@ -43,6 +43,10 @@
             android:name=".ViewActivity"
             android:label="@string/title_activity_view" >
         </activity>
+        <activity
+            android:name=".ZeroPunctuation"
+            android:label="@string/title_activity_zero_punctuation" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,61 +1,73 @@
 package com.app.escapistandroid;
 
 import android.support.v7.app.ActionBarActivity;
+import android.app.ListActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import android.app.ListActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+ 
 
 
 
 
 
-
-
-public class ViewActivity extends ActionBarActivity {
+public class ViewActivity extends ListActivity {
+	ListView listView1;
+    ListView listView2;
+    String[] items = { "ZeroPunctuation", "item 2", "item 3", "item 4", "item 5" };
+    String[] items_list_2 = { "items_list_2", "items_list_2", "items_list_2",
+            "items_list_2", "items_list_2", "items_list_2", "items_list_2",
+            "items_list_2", "items_list_2", "items_list_2", "items_list_2" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_view);
-		populateListeView();
+		setListAdapter(new ArrayAdapter<String>(this, 
+				android.R.layout.simple_list_item_1,
+				items));
+    }
+	
+	
+	protected void onListItemClick(ListView listView, View view, int position, long id){
+		super.onListItemClick(listView,view,position,id);
+		String openClass = items[position];
 		
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.view, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		try{
+			
+			Class selected = Class.forName("com.app.escapistandroid."+openClass);
+			Intent selectedIntent = new Intent(this,selected);
+			startActivity(selectedIntent);
+			
+		}catch(ClassNotFoundException e){
+			
+			
+			
 		}
-		return super.onOptionsItemSelected(item);
+		
+		
 	}
-	private void populateListeView(){
-		
-		String[] shows = {"Zero Punctuation","Jimquisition"};
-		
-		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-				R.layout.item,
-				shows);
-		
-		
-		ListView list = (ListView) findViewById(R.id.listView1);
-		
-		list.setAdapter(adapter);
-	}
-
 	
 	
+		
 }
+
+
