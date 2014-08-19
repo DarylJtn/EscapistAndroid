@@ -20,15 +20,17 @@
             android:name="com.google.android.gms.analytics.globalConfigResource"
             android:resource="@xml/global_tracker" />
 
-        <activity
-            android:name=".FullscreenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/FullscreenTheme" >
+        <activity android:name=".ViewActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -40,12 +42,20 @@
         <activity android:name=".popup" >
         </activity>
         <activity
-            android:name=".ViewActivity"
-            android:label="@string/title_activity_view" >
-        </activity>
-        <activity
             android:name=".ZeroPunctuation"
             android:label="@string/title_activity_zero_punctuation" >
+        </activity>
+        <activity
+            android:name=".Jimquisition"
+            android:label="@string/title_activity_jimquisition" >
+        </activity>
+        <activity
+            android:name=".Top5Show"
+            android:label="@string/title_activity_top5_show" >
+        </activity>
+        <activity
+            android:name=".EscToTheMovies"
+            android:label="@string/title_activity_esc_to_the_movies" >
         </activity>
     </application>
 

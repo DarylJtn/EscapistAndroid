@@ -30,26 +30,38 @@ import android.widget.AdapterView.OnItemClickListener;
 
 
 
-public class ViewActivity extends ListActivity {
+public class ViewActivity extends ListActivity  {
 	ListView listView1;
     ListView listView2;
-    String[] items = { "ZeroPunctuation", "item 2", "item 3", "item 4", "item 5" };
+    
+    String[][] items = new String[][]{
+    	
+    	{"Zero Punctuation", "ZeroPunctuation"},
+    	{"Jimquisition", "Jimquisition"},
+    	{"Escape to the Movies", "EscToTheMovies"},
+    	{"Top 5 with Lisa Foiles", "Top5Show"}
+    	
+    	
+    };
+    
+   // String[] items = { "ZeroPunctuation", "Jimquisition", "item 3", "item 4", "item 5" };
     String[] items_list_2 = { "items_list_2", "items_list_2", "items_list_2",
-            "items_list_2", "items_list_2", "items_list_2", "items_list_2",
+            "items_list_2" , "items_list_2", "items_list_2", "items_list_2",
             "items_list_2", "items_list_2", "items_list_2", "items_list_2" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.setTitle(String.format("Select a Show", "aa"));
 		setListAdapter(new ArrayAdapter<String>(this, 
 				android.R.layout.simple_list_item_1,
-				items));
+				getTitles()));
     }
 	
 	
 	protected void onListItemClick(ListView listView, View view, int position, long id){
 		super.onListItemClick(listView,view,position,id);
-		String openClass = items[position];
+		String openClass = getClasses()[position];
 		
 		try{
 			
@@ -68,6 +80,32 @@ public class ViewActivity extends ListActivity {
 	
 	
 		
+private String[] getTitles(){
+	
+	String[] title = new String[items.length];
+	
+	for(int i = 0;i<items.length;i++){
+		
+		title[i] = items[i][0];
+		
+		
+	}
+	return title;
+} 
+
+private String[] getClasses(){
+	
+	String[] className = new String[items.length];
+	
+	for(int i = 0;i<items.length;i++){
+		
+		className[i] = items[i][1];
+		
+		
+	}
+	return className;
 }
 
+
+}
 

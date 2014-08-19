@@ -49,8 +49,8 @@ import com.google.android.apps.analytics.GoogleAnalyticsTracker;
  * @see SystemUiHider
  */
 public class FullscreenActivity extends Activity {
-	
-	
+	Boolean share;
+	VideoView mVideoView;
 	public FullscreenActivity() {
 		super();
 		}
@@ -95,7 +95,7 @@ public class FullscreenActivity extends Activity {
 	    super.onStop();
 	}
 	
-
+	View contentView;
 	//on load code
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +108,7 @@ public class FullscreenActivity extends Activity {
 
 		setContentView(R.layout.activity_fullscreen);
 
-		final View contentView = (VideoView)findViewById(R.id.videoView1);
+		contentView = (VideoView)findViewById(R.id.videoView1);
 
 		// Set up an instance of SystemUiHider to control the system UI for
 		// this activity.
@@ -151,18 +151,41 @@ public class FullscreenActivity extends Activity {
 				});
 
 		// Set up the user interaction to manually show or hide the system UI.
+		
+		
+		Bundle extras = getIntent().getExtras();
+		System.out.println("Size  "+ extras.size());
+		if (extras != null&&extras.size()==1) {//check if extras is null or if url has been shared with app
+			System.out.println("Extra  "+extras);
+		    String value = extras.getString("new_variable_name");
+		    System.out.println(value);
+		    try {
+		    	sharedText = value;
+				playVideo(getURL(value));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		/*
 		contentView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				if (TOGGLE_ON_CLICK) {
 					
 					mSystemUiHider.toggle();
+				mVideoView.show(1000);
 				} else {
-					mSystemUiHider.show();
+					//mSystemUiHider.show();
 				}
 			}
 		});
-
+*/
 		//set the orientation of the device to landscape
 		this.setRequestedOrientation(FullscreenActivity.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -173,18 +196,19 @@ public class FullscreenActivity extends Activity {
 	//check if the application has been opened via a share 
 		if (Intent.ACTION_SEND.equals(action) && type != null) {
 	        if ("text/plain".equals(type)) {
+	        	System.out.println("Intent "+intent);
 	        	//call the method to compile the shared URL and 
 	            handleSendText(intent); // Handle text being sent
 	        }else{
 	        	//Show help
 
-	               Intent launchactivity= new Intent(FullscreenActivity.this,popup.class);                               
+	        Intent launchactivity= new Intent(FullscreenActivity.this,popup.class);                               
 	     startActivity(launchactivity);    
           }
 	         
 		}else{
 			
-			startActivity(new Intent(FullscreenActivity.this,ViewActivity.class));
+		//	startActivity(new Intent(FullscreenActivity.this,ViewActivity.class));
 			System.out.println("No message here");
 
 			
@@ -234,7 +258,7 @@ public class FullscreenActivity extends Activity {
 		
 		Uri uri = Uri.parse(URL); //Declare your url here.
 		final ProgressDialog progDailog;
-		VideoView mVideoView  = (VideoView)findViewById(R.id.videoView1);
+		mVideoView  = (VideoView)findViewById(R.id.videoView1);
 		mVideoView.setVisibility(1);
 		mVideoView.setMediaController(new MediaController(this));       
 		mVideoView.setVideoURI(uri);
@@ -242,12 +266,33 @@ public class FullscreenActivity extends Activity {
 		mVideoView.start();
 	      progDailog = ProgressDialog.show(this, "Please wait ...", "Retrieving data ...", true);
 
+	     
+	      
+			contentView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					if (TOGGLE_ON_CLICK) {
+						
+						mSystemUiHider.toggle();
+					} else {
+						//mSystemUiHider.show();
+					}
+				}
+			});
+	      
+	      
+	      
+	      
+	      
 	      mVideoView.setOnPreparedListener(new OnPreparedListener() {
 
-	    	  	
+
+	  
+	    	  
 	            public void onPrepared(MediaPlayer mp) {
 	                // TODO Auto-generated method stub
 	                progDailog.dismiss();
+	                
 	            }
 
 	
@@ -363,7 +408,7 @@ return s;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} finally{
-				     urlConnection.disconnect();
+				   //  urlConnection.disconnect();
 				   }
 
 		    			    	

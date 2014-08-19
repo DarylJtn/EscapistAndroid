@@ -4,23 +4,70 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.support.v7.app.ActionBarActivity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class ZeroPunctuation extends ActionBarActivity {
+public class ZeroPunctuation extends ListActivity {
 
-	Link[] links = new Link[50];
+	Link[] links = new Link[52];
+	
+    String[] items = new String[52];
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_zero_punctuation);
-	}
+		this.setTitle(String.format("Zero Punctuation", "aa"));
+		rssThread thread = new rssThread("http://www.escapistmagazine.com/rss/videos/list/1.xml");
+		thread.start();
+		
+		while(!thread.finished()){
+			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+             
+		}
+		
+		links = thread.returnLinks();
+
+
+		for(int i = 0;i<links.length;i++){
+			System.out.println(i);
+
+			
+			try{
+			items[i]=links[i].getTitle();
+			}catch(NullPointerException e){
+				
+				System.out.println(i);
+				
+			}catch (ArrayIndexOutOfBoundsException e) {
+			}
+		}
+		
+		setListAdapter(new ArrayAdapter<String>(this, 
+		android.R.layout.simple_list_item_1,
+		items));
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -29,16 +76,25 @@ public class ZeroPunctuation extends ActionBarActivity {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	protected void onListItemClick(ListView listView, View view, int position, long id){
+		super.onListItemClick(listView,view,position,id);
+		String vidURL = links[position].getURL();
+		
+		try{
+			
+			Class selected = Class.forName("com.app.escapistandroid.FullscreenActivity");
+			Intent selectedIntent = new Intent(this,selected);
+			selectedIntent.putExtra("new_variable_name", vidURL);
+
+			startActivity(selectedIntent);
+			
+		}catch(ClassNotFoundException e){
+			
+			
+			
 		}
-		return super.onOptionsItemSelected(item);
+		
+		
 	}
 	
 
@@ -59,29 +115,5 @@ class GetAndroidPitRssFeedTask extends AsyncTask<Void, Void, String> {
 }
 
 
-
-class Link{
-	
-String URL;
-String title;
-
-void setData(String u, String t){
-	
-	
-	URL = u;
-	title = t;
-}
-	
-	public String getURL(){
-		return URL;
-	}
-	public String getTitle(){
-		
-	return title;	
-		
-	}
-	
-	
-}
 
 
