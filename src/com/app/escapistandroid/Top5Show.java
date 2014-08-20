@@ -12,9 +12,9 @@ import android.widget.ListView;
 
 public class Top5Show extends ListActivity {
 
-	Link[] links = new Link[52];
+	Link[] links;
 	
-    String[] items = new String[52];
+    String[] items;
    
 	
 	@Override
@@ -47,6 +47,7 @@ public class Top5Show extends ListActivity {
 		
 		links = thread.returnLinks();
 
+		items = new String[links.length-2];	
 
 		for(int i = 0;i<links.length;i++){
 			System.out.println(i);

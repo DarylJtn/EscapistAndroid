@@ -13,9 +13,9 @@ import android.widget.ListView;
 
 public class Jimquisition extends ListActivity {
 
-	Link[] links = new Link[52];
+	Link[] links; //= new Link[52];
 	
-    String[] items = new String[52];
+    String[] items; //= new String[52];
 
 	
 	@Override
@@ -40,20 +40,27 @@ public class Jimquisition extends ListActivity {
 		
 		links = thread.returnLinks();
 
+items = new String[links.length-2];	
 
 		for(int i = 0;i<links.length;i++){
 			System.out.println(i);
 
-			
+		
 			try{
+
 			items[i]=links[i].getTitle();
 			}catch(NullPointerException e){
 				
 				System.out.println(i);
 				
 			}catch (ArrayIndexOutOfBoundsException e) {
+				
+				System.out.println("Caught");
+
 			}
 		}
+		System.out.println(items);
+		
 		
 		setListAdapter(new ArrayAdapter<String>(this, 
 		android.R.layout.simple_list_item_1,

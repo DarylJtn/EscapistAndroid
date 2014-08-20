@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -52,16 +53,16 @@ class rssThread extends Thread{
 				    //We look for "title" tag in XML response
 				    if(xpp.getName().equalsIgnoreCase("title")){
 				    	title = xpp.nextText();
-				      //Once we found the "title" tag, add the text it contains to our builder
+		      //Once we found the "title" tag, add the text it contains to our builder
 				     // builder.append(xpp.nextText()+"\n");
 				    }else if(xpp.getName().equalsIgnoreCase("link")){
-				    	System.out.println(numLinks);
+				    	System.out.println("numLinks = "+ numLinks);
 				    	links[numLinks] = new Link(xpp.nextText(),title);
 				    	//links[numLinks].setData(title,xpp.getName());
 				    	title = "";
 				    	numLinks++;
 				    	// builder.append(xpp.nextText()+"\n");
-				    	System.out.println(numLinks);
+				    	//System.out.println(numLinks);
 				    	
 				    }
 				  }
@@ -69,17 +70,7 @@ class rssThread extends Thread{
 				  eventType=xpp.next();
 				}
 				
-				for(int i=0;i<50;i++){
-					
-					System.out.println(links[i].getTitle()+"----"+ links[i].getURL());
-					
-					
-				}
-				
-				
-				
-				
-				
+		
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -103,19 +94,19 @@ class rssThread extends Thread{
 		  }
 		}
 		public Link[] returnLinks(){
-			
-			
-			for(int i = 0;i<49;i++){
-				
-				links[i] =  links[i+2];
+			System.out.println("ReturnLinks");
+			Link[] returnLinks = new Link[numLinks];
+			for(int i = 0;i<numLinks;i++){
+				returnLinks[i] =  links[i+2];
 				
 	
 				
 			}
 			
 			
-			
-			return links;
+			System.out.println("returned");
+
+			return returnLinks;
 
 		}
 		

@@ -8,5 +8,32 @@
     <string name="title_activity_jimquisition">Jimquisition</string>
     <string name="title_activity_top5_show">Top5Show</string>
     <string name="title_activity_esc_to_the_movies">EscToTheMovies</string>
+    <string name="title_activity_news_now_show">NewsNowShow</string>
+    <string name="title_activity_escapist_podcast_show">EscapistPodcastShow</string>
+    <string name="title_activity_escapist_podcast_ccshow">EscapistPodcastCCShow</string>
+    <string name="title_activity_escapist_podcast_mvshow">EscapistPodcastMVShow</string>
+    <string name="title_activity_escapist_podcast_mtshow">EscapistPodcastMTShow</string>
+    <string name="title_activity_escapist_podcast_tshow">EscapistPodcastTShow</string>
+    <string name="title_activity_expshow">EXPShow</string>
+    <string name="title_activity_feed_dump_show">FeedDumpShow</string>
+    <string name="title_activity_gotabridged_show">GOTAbridgedShow</string>
+    <string name="title_activity_game_theory_show">GameTheoryShow</string>
+    <string name="title_activity_game_front_plays">GameFrontPlays</string>
+    <string name="title_activity_rhymedown_show">RhymedownShow</string>
+    <string name="title_activity_loading_ready_run_show">LoadingReadyRunShow</string>
+    <string name="title_activity_miracle_of_sound_show">MiracleOfSoundShow</string>
+    <string name="title_activity_movie_defense_show">MovieDefenseShow</string>
+    <string name="title_activity_movie_trailers_show">MovieTrailersShow</string>
+    <string name="title_activity_no_right_answer_show">NoRightAnswerShow</string>
+    <string name="title_activity_previews_show">PreviewsShow</string>
+    <string name="title_activity_reviews">Reviews</string>
+    <string name="title_activity_reviews_show">ReviewsShow</string>
+    <string name="title_activity_shut_up_show">ShutUpShow</string>
+    <string name="title_activity_big_picture_show">BigPictureShow</string>
+    <string name="title_activity_escapist_presents_show">EscapistPresentsShow</string>
+    <string name="title_activity_trailers">Trailers</string>
+    <string name="title_activity_trailers_show">TrailersShow</string>
+    <string name="title_activity_uncivil_war_show">UncivilWarShow</string>
+    <string name="title_activity_unskippable_show">UnskippableShow</string>
 
 </resources>

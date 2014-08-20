@@ -38,16 +38,33 @@ public class ViewActivity extends ListActivity  {
     	
     	{"Zero Punctuation", "ZeroPunctuation"},
     	{"Jimquisition", "Jimquisition"},
-    	{"Escape to the Movies", "EscToTheMovies"},
+    	{"Escapist News Now", "NewsNowShow"},
+    	{"Escapist Podcast", "EscapistPodcastShow"},
+    	{"Escapist Podcast - Tabletop", "EscapistPodcastTShow"},
+    	{"Escapist Podcast - Movies and TV", "EscapistPodcastMVShow"},
+    	{"The Big Picture", "BigPictureShow"},
+    	{"The Escapist Presents", "EscapistPresentsShow"},
+    	{"EXP", "EXPShow"},
+    	{"Feed Dump", "FeedDumpShow"},
+    	{"GameFront Plays", "GameFrontPlays"},
+    	{"Game Theory", "GameTheoryShow"},
+    	{"Game of Thrones Abridged", "GOTAbridgedShow"},
+    	{"Loading Ready Run", "LoadingReadyRunShow"},
+    	{"Miracle of Sound", "MiracleOfSoundShow"},
+    	{"Movie Defense Force", "MovieDefenseShow"},
+    	{"Movie Trailers", "MovieTrailersShow"},
+    	{"Escapist News Now", "NewsNowShow"},
+    	{"No Right Answer", "NoRightAnswerShow"},
+    	{"Shut up and Sit Down", "ShutUpShow"},
+    	{"Trailers", "TrailersShow"},
+    	{"Uncivil War", "UncivilWarShow"},
+    	{"Unskippable", "UnskippableShow"},
     	{"Top 5 with Lisa Foiles", "Top5Show"}
     	
     	
     };
     
    // String[] items = { "ZeroPunctuation", "Jimquisition", "item 3", "item 4", "item 5" };
-    String[] items_list_2 = { "items_list_2", "items_list_2", "items_list_2",
-            "items_list_2" , "items_list_2", "items_list_2", "items_list_2",
-            "items_list_2", "items_list_2", "items_list_2", "items_list_2" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

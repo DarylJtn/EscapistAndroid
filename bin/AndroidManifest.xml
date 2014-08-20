@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.escapistandroid"
-    android:versionCode="3"
-    android:versionName="1.2" >
+    android:versionCode="4"
+    android:versionName="1.3" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -56,6 +56,114 @@
         <activity
             android:name=".EscToTheMovies"
             android:label="@string/title_activity_esc_to_the_movies" >
+        </activity>
+        <activity
+            android:name=".NewsNowShow"
+            android:label="@string/title_activity_news_now_show" >
+        </activity>
+        <activity
+            android:name=".EscapistPodcastShow"
+            android:label="@string/title_activity_escapist_podcast_show" >
+        </activity>
+        <activity
+            android:name=".EscapistPodcastCCShow"
+            android:label="@string/title_activity_escapist_podcast_ccshow" >
+        </activity>
+        <activity
+            android:name=".EscapistPodcastMVShow"
+            android:label="@string/title_activity_escapist_podcast_mvshow" >
+        </activity>
+        <activity
+            android:name=".EscapistPodcastMTShow"
+            android:label="@string/title_activity_escapist_podcast_mtshow" >
+        </activity>
+        <activity
+            android:name=".EscapistPodcastTShow"
+            android:label="@string/title_activity_escapist_podcast_tshow" >
+        </activity>
+        <activity
+            android:name=".EXPShow"
+            android:label="@string/title_activity_expshow" >
+        </activity>
+        <activity
+            android:name=".FeedDumpShow"
+            android:label="@string/title_activity_feed_dump_show" >
+        </activity>
+        <activity
+            android:name=".GOTAbridgedShow"
+            android:label="@string/title_activity_gotabridged_show" >
+        </activity>
+        <activity
+            android:name=".GameTheoryShow"
+            android:label="@string/title_activity_game_theory_show" >
+        </activity>
+        <activity
+            android:name=".GameFrontPlays"
+            android:label="@string/title_activity_game_front_plays" >
+        </activity>
+        <activity
+            android:name=".RhymedownShow"
+            android:label="@string/title_activity_rhymedown_show" >
+        </activity>
+        <activity
+            android:name=".LoadingReadyRunShow"
+            android:label="@string/title_activity_loading_ready_run_show" >
+        </activity>
+        <activity
+            android:name=".MiracleOfSoundShow"
+            android:label="@string/title_activity_miracle_of_sound_show" >
+        </activity>
+        <activity
+            android:name=".MovieDefenseShow"
+            android:label="@string/title_activity_movie_defense_show" >
+        </activity>
+        <activity
+            android:name=".MovieTrailersShow"
+            android:label="@string/title_activity_movie_trailers_show" >
+        </activity>
+        <activity
+            android:name=".NoRightAnswerShow"
+            android:label="@string/title_activity_no_right_answer_show" >
+        </activity>
+        <activity
+            android:name=".PreviewsShow"
+            android:label="@string/title_activity_previews_show" >
+        </activity>
+        <activity
+            android:name=".Reviews"
+            android:label="@string/title_activity_reviews" >
+        </activity>
+        <activity
+            android:name=".ReviewsShow"
+            android:label="@string/title_activity_reviews_show" >
+        </activity>
+        <activity
+            android:name=".ShutUpShow"
+            android:label="@string/title_activity_shut_up_show" >
+        </activity>
+        <activity
+            android:name=".BigPictureShow"
+            android:label="@string/title_activity_big_picture_show" >
+        </activity>
+        <activity
+            android:name=".EscapistPresentsShow"
+            android:label="@string/title_activity_escapist_presents_show" >
+        </activity>
+        <activity
+            android:name=".Trailers"
+            android:label="@string/title_activity_trailers" >
+        </activity>
+        <activity
+            android:name=".TrailersShow"
+            android:label="@string/title_activity_trailers_show" >
+        </activity>
+        <activity
+            android:name=".UncivilWarShow"
+            android:label="@string/title_activity_uncivil_war_show" >
+        </activity>
+        <activity
+            android:name=".UnskippableShow"
+            android:label="@string/title_activity_unskippable_show" >
         </activity>
     </application>
 
