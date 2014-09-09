@@ -1,7 +1,10 @@
 package com.app.escapistandroid;
 
+import com.app.escapistandroid.Class.LoadingThread;
+
 import android.support.v7.app.ActionBarActivity;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,8 +23,11 @@ public class Jimquisition extends ListActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+	LoadingThread loadingThread = new LoadingThread(this);		
+	loadingThread.showDialog();	
+		
 		super.onCreate(savedInstanceState);
-
+	
 		rssThread thread = new rssThread("http://www.escapistmagazine.com/rss/videos/list/166.xml");
 		thread.start();
 		
@@ -37,7 +43,7 @@ public class Jimquisition extends ListActivity {
 			
 			
 		}
-		
+		//loadingThread.hideDialog();
 		links = thread.returnLinks();
 
 items = new String[links.length-2];	

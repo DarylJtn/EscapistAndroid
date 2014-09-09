@@ -16,6 +16,15 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.util.Log;
 
+
+/*****************************
+*This thread fetches the RSS data from the URL passed to the thread
+*Data is collected added to an array of link objects where it can be retrieved via returnLinks(); 
+******************************/
+
+
+
+
 class rssThread extends Thread{
 	
 	String loc;
@@ -53,16 +62,13 @@ class rssThread extends Thread{
 				    //We look for "title" tag in XML response
 				    if(xpp.getName().equalsIgnoreCase("title")){
 				    	title = xpp.nextText();
-		      //Once we found the "title" tag, add the text it contains to our builder
-				     // builder.append(xpp.nextText()+"\n");
+
 				    }else if(xpp.getName().equalsIgnoreCase("link")){
 				    	System.out.println("numLinks = "+ numLinks);
 				    	links[numLinks] = new Link(xpp.nextText(),title);
-				    	//links[numLinks].setData(title,xpp.getName());
 				    	title = "";
 				    	numLinks++;
-				    	// builder.append(xpp.nextText()+"\n");
-				    	//System.out.println(numLinks);
+			
 				    	
 				    }
 				  }
@@ -93,6 +99,9 @@ class rssThread extends Thread{
 		    return null;
 		  }
 		}
+	 
+	 
+	 //returns an array of the links that have been retrieved from the array list
 		public Link[] returnLinks(){
 			System.out.println("ReturnLinks");
 			Link[] returnLinks = new Link[numLinks];
@@ -102,14 +111,13 @@ class rssThread extends Thread{
 	
 				
 			}
-			
-			
 			System.out.println("returned");
 
 			return returnLinks;
 
 		}
 		
+		//checks if the thread has completed retrieving data
 		public Boolean finished(){
 			
 			return finished;

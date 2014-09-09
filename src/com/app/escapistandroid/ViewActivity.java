@@ -2,6 +2,7 @@ package com.app.escapistandroid;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,7 +26,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
  
-
+/*
+ * Main menu 
+ * 
+ * Contains a list of shows that can be viewed. 
+ * When a user selects a show from the list the application switches to that activity
+ * 
+ * 
+ */
 
 
 
@@ -35,7 +43,8 @@ public class ViewActivity extends ListActivity  {
     ListView listView2;
     
     String[][] items = new String[][]{
-    	
+    	//Strings contain show name to be displayed in the menu
+    	//and the activity name that the user will be sent to upon selection
     	{"Zero Punctuation", "ZeroPunctuation"},
     	{"Jimquisition", "Jimquisition"},
     	{"Escapist News Now", "NewsNowShow"},
@@ -63,9 +72,13 @@ public class ViewActivity extends ListActivity  {
     	
     	
     };
-    
-   // String[] items = { "ZeroPunctuation", "Jimquisition", "item 3", "item 4", "item 5" };
 
+    /*
+     * on create set the title of the activity 
+     * set the name of shows to the user interface from the array 
+     * 
+     */
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,7 +89,16 @@ public class ViewActivity extends ListActivity  {
     }
 	
 	
+/*
+ * On click of item get the position of clicked item and get the class name of the selection then switch to that activity
+ * 
+ */
+	
 	protected void onListItemClick(ListView listView, View view, int position, long id){
+		
+		//ProgressDialog dialog = new ProgressDialog(this);
+		//dialog.show();
+		
 		super.onListItemClick(listView,view,position,id);
 		String openClass = getClasses()[position];
 		
@@ -96,7 +118,7 @@ public class ViewActivity extends ListActivity  {
 	}
 	
 	
-		
+//Returns a 1D array of titles from the items 2D array
 private String[] getTitles(){
 	
 	String[] title = new String[items.length];
@@ -110,6 +132,7 @@ private String[] getTitles(){
 	return title;
 } 
 
+//Returns a 1D array of classnames from the items 2D array
 private String[] getClasses(){
 	
 	String[] className = new String[items.length];
