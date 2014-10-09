@@ -28,6 +28,14 @@ tools:context=".ViewActivity" >
     android:background="#ccc987"
     android:visibility="gone" />
 
+<Spinner
+    android:id="@+id/spinner2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignBottom="@+id/listView1"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="115dp" />
+
 <!-- add other list as you like -->
 
 </LinearLayout>

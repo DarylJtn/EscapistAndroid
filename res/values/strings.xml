@@ -35,5 +35,7 @@
     <string name="title_activity_trailers_show">TrailersShow</string>
     <string name="title_activity_uncivil_war_show">UncivilWarShow</string>
     <string name="title_activity_unskippable_show">UnskippableShow</string>
+    <string name="title_activity_episode_menu">EpisodeMenu</string>
+    <string name="title_activity_episode_list">EpisodeList</string>
 
 </resources>

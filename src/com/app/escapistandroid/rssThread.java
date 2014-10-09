@@ -123,6 +123,12 @@ class rssThread extends Thread{
 			return finished;
 			
 		}
+		
+		public int getNumLinks(){
+			
+			return numLinks;
+			
+		}
 	
 }
 

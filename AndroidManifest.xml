@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.escapistandroid"
-    android:versionCode="4"
-    android:versionName="1.3" >
+    android:versionCode="6"
+    android:versionName="1.6" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -164,6 +166,14 @@
         <activity
             android:name=".UnskippableShow"
             android:label="@string/title_activity_unskippable_show" >
+        </activity>
+        <activity
+            android:name=".EpisodeMenu"
+            android:label="@string/title_activity_episode_menu" >
+        </activity>
+        <activity
+            android:name=".EpisodeList"
+            android:label="@string/title_activity_episode_list" >
         </activity>
     </application>
 
